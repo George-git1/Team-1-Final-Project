@@ -1,11 +1,11 @@
 // log out from the current account
 document.querySelector('button[id="logOutBtn"]').addEventListener("click", function (stop) {
     stop.preventDefault();
-    deleteCookie("user_id", "/");
+    deleteCookie("user_name", "/");
   })
   // updated variable;
   var update_user_name, update_password
-  var user_id = get_cookie_value("user_id") //1
+  var user_id = get_cookie_value("user_name") //1
   
   
   //put user new data in the data
@@ -14,21 +14,21 @@ document.querySelector('button[id="logOutBtn"]').addEventListener("click", funct
     update_user_name = document.getElementById("user_name").value;
     update_password = document.getElementById("password").value;
     $('#userProfileModal').modal('hide');
-    updateUser(user_id, update_user_name, update_password);
+    updateUser(user_name, update_user_name, update_password);
   })
   
   // delete a user account
   document.querySelector('button[id="deleteUserBtn"]').addEventListener("click", function (stop) {
     stop.preventDefault();
-    let userId = get_cookie_value("user_id");
-    deleteUser(userId);
+    let user_name = get_cookie_value("user_name");
+    deleteUser(user_name);
   
   })
   
   //get user data in the form
   document.getElementById("editProfile").addEventListener('click', function (stop) {
-    var user_id = get_cookie_value("user_id")
-      fetch('http://localhost:8082/users/read/' + user_id )
+    var user_name = get_cookie_value("user_name")
+      fetch('http://localhost:8082/users/read/' + user_name )
         .then(
           function (response) {
             if (response.status !== 200) {
@@ -42,7 +42,7 @@ document.querySelector('button[id="logOutBtn"]').addEventListener("click", funct
               if (data.length == 0) {
                 return;
               }
-              generateTable(data, user_id)
+              generateTable(data, user_name)
             });
           }
         )
@@ -77,7 +77,7 @@ document.querySelector('button[id="logOutBtn"]').addEventListener("click", funct
   }
   
   
-  function updateUser(userId, update_user_name, update_password) {
+  function updateUser(user_name, update_user_name, update_password) {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
   
@@ -92,7 +92,7 @@ document.querySelector('button[id="logOutBtn"]').addEventListener("click", funct
       redirect: 'follow'
     };
   
-    fetch("http://localhost:8082/users/update/" + userId, requestOptions)
+    fetch("http://localhost:8082/users/update/" + user_name, requestOptions)
   
       .then(function (data) {
   
@@ -109,9 +109,9 @@ document.querySelector('button[id="logOutBtn"]').addEventListener("click", funct
   
   }
   
-  function deleteUser(userId) {
-    console.log(userId);
-    fetch("http://localhost:8082/users/delete/" + userId, {
+  function deleteUser(user_name) {
+    console.log(user_name);
+    fetch("http://localhost:8082/users/delete/" + user_name, {
         method: 'delete',
         headers: {
           "Content-type": "application/json"

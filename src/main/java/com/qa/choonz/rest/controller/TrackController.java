@@ -35,10 +35,16 @@ public class TrackController {
         return new ResponseEntity<TrackDTO>(this.service.create(track), HttpStatus.CREATED);
     }
     
-    // track
+    // Album
     @PutMapping("/{trackId}/albums/{albumId}")
     public ResponseEntity<TrackDTO> assignTrackToAlbum(@PathVariable Long trackId, @PathVariable Long albumId) {
         return new ResponseEntity<TrackDTO>(this.service.assignAlbum(trackId, albumId), HttpStatus.CREATED);
+    }
+    
+    //Genre
+    @PutMapping("/{trackId}/genres/{genreId}")
+    public ResponseEntity<TrackDTO> assignTrackToGenre(@PathVariable Long trackId, @PathVariable Long genreId) {
+        return new ResponseEntity<TrackDTO>(this.service.assignGenre(trackId, genreId), HttpStatus.CREATED);
     }
 
     @GetMapping("/read")

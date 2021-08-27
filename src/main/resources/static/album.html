@@ -54,7 +54,6 @@
               </li>
             </div>
         </form>
-        </form>
   
   
       </ul>
@@ -78,12 +77,6 @@
             <li class="nav-item">
               <a class="nav-link" href="tracks.html">Tracks</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="login.html">Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="signup.html">Sign Up</a>
-            </li>
           </class>
       </ul>
     </div>
@@ -93,44 +86,34 @@
 <!-- /main -->
 
 <div class="container">
-<h1>Albums</h1>
+  
+  <h1>Albums</h1>
+    <li class="nav-item" role="presentation" style = "list-style-type: none;">
+      <div class="btn-group">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+         ALBUMS CRUD
+        </button>
+        <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left">
+          <button class="dropdown-item" type="button"  data-toggle="modal" data-target="#createAlbumModal" >CREATE</button>
+          <button class="dropdown-item" type="button"  data-toggle="modal" data-target="#updateAlbumModal" >UPDATE</button>
+          <button class="dropdown-item" type="button"  data-toggle="modal" data-target="#deleteAlbumModal" >DELETE</button>
+        </div>
+      </div>
+    </li>
+
 
 <div id="flex"></div>
 
+<!-- -->
 <table class="table table-dark table-hover"></table>
 
-<div hidden>
-  <div id = "cards" class="cards">
-  <div id ="card" class="card" classname="card" style="max-width: 18rem; width: auto;">
-    <a id="imagelink">
-      <img class="card-img-top" width="250" height="250">
-    </a>
-    <div id = "body" class="card-body">
-        <h5 id = "title" class = "card-title"><a id="titlelink" style="color: white; text-decoration: none; background-color: none;"></a></h5>
-        <p id = "text" class = "card-text"><a id="textlink" style="color: white; text-decoration: none; background-color: none;"></a></p>
-        <a id = "button" class = "btn btn-primary"></a>
-    </div>
-  </div>
-  </div>
-</div>
 
-<p></p>
-
-<div class="d-flex p-2">
-  <div class="card-columns" style="text-align:center; margin: 0 auto;">
-    <div id ="showcards" class = "showcards">
-    </div>
-  </div>
-</div>
-
-</div>
-
- <!-- create account modal -->
- <div class="modal fade" id="createAccountModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <!-- update album modal -->
+ <div class="modal fade" id="updateAlbumModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New Account</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Update Album</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -140,29 +123,116 @@
         <form class="create-user" action="index.html" method="POST">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-default">Your Name:</span>
+              <span class="input-group-text" id="inputGroup-sizing-default">Album ID:</span>
             </div>
-            <input name="full_name" type="text" class="form-control" aria-label="Sizing example input"
+            <input id="albumid" type="text" class="form-control" aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default" required>
           </div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-default">User
-                Name:</span>
+              <span class="input-group-text" id="inputGroup-sizing-default">Album Name:</span>
             </div>
-            <input name="user_name" type="text" class="form-control" aria-label="Sizing example input"
+            <input id="albumnameupdate" type="text" class="form-control" aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default" required>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">Cover:</span>
+            </div>
+            <input id="coverupdate" type="text" class="form-control" aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default" required>
           </div>
           <div class="input-group">
             <div class="input-group-prepend">
               <span class="input-group-text" id="inputGroup-sizing-default">
-                Password:</span>
+                Artist-Id:</span>
             </div>
-            <input name="password" type="password" class="form-control" aria-label="Sizing example input"
+            <input id="artistidupdate" type="text" class="form-control" aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default">
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" id="updateAlbum">Update</button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+ <!-- create album modal -->
+ <div class="modal fade" id="createAlbumModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Album</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <p id="success-create" class="card-text"></p>
+      <div class="modal-body">
+        <form class="create-user" action="index.html" method="POST">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">Album Name:</span>
+            </div>
+            <input id="albumname" type="text" class="form-control" aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default" required>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">Cover:</span>
+            </div>
+            <input id="cover" type="text" class="form-control" aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default" required>
+          </div>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">
+                Artist-Id:</span>
+            </div>
+            <input id="artistid" type="text" class="form-control" aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default">
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" id="createAlbum">Create</button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <!-- delete album modal -->
+ <div class="modal fade" id="deleteAlbumModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Album</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <p id="success-create" class="card-text"></p>
+      <div class="modal-body">
+        <form class="create-user" action="index.html" method="POST">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">Album ID:</span>
+            </div>
+            <input id="albumiddelete" type="text" class="form-control" aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default" required>
           </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Create</button>
+            <button type="submit" class="btn btn-primary" id="deleteAlbum">Delete</button>
           </div>
         </form>
       </div>
@@ -206,7 +276,7 @@
         <form class="user-profile" action="todo.html" method="POST">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-default">User Name</span></>
+              <span class="input-group-text" id="inputGroup-sizing-default">User Name</span>
             </div>
             <input id="user_name" name="user_name" type="text" class="form-control" aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default" required>
@@ -240,18 +310,18 @@
       </div>
       <div class="modal-body">
         <!-- <h5 class="card-title">Log in</h5> -->
-        <p class="card-text">Use your credential to log in</p>
+        <p class="card-text">Use your credentials to log in</p>
         <form class="log-in" action="index.html" method="POST">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-default">UserID</span>
+              <span class="input-group-text" id="inputGroup-sizing-default">User Name</span>
             </div>
-            <input name="userId" type="text" class="form-control" aria-label="Sizing example input"
+            <input name="user_name" type="text" class="form-control" aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default" required>
           </div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-default">Password</span></>
+              <span class="input-group-text" id="inputGroup-sizing-default">Password</span>
             </div>
             <input name="password" type="password" class="form-control" aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default" required>

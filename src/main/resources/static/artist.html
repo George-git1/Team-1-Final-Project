@@ -23,6 +23,35 @@
         <form class="form-inline">
           <input id="searchField" class="form-control mr-sm-2" type="search" onsearch="search()" placeholder="Search" aria-label="Search">
           <button id="searchButton" class="btn btn-outline-success my-2 my-sm-0" onclick="search()" type="button" style="margin: 10px;">Search</button>
+
+          <div id="guestLoggedInBtn">
+            <li class="nav-item" role="presentation" style = "list-style-type: none;">
+              <div class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+                  Login / Create Account
+                </button>
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left">
+                  <button class="dropdown-item" type="button"  data-toggle="modal" data-target="#userLoginModal" >Log in</button>
+                  <button class="dropdown-item" type="button"  data-toggle="modal" data-target="#createAccountModal" >Create Account</button>
+                </div>
+              </div>
+            </li>
+            </div>
+    
+            <div id="userLoggedInBtn">
+              <li class="nav-item" role="presentation" style = "list-style-type: none;">
+                <div class="btn-group">
+                  <button id="myProfile" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+                    User
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left">
+                    <button id ="editProfile" class="dropdown-item" type="button"  data-toggle="modal" data-target="#userProfileModal" >Edit My Profile</button>
+                    <button id= "logOutBtn" class="dropdown-item" type="button">Log Out</button>
+                    <button id= "deleteUserBtn" class="dropdown-item" type="button">Delete Account</button>
+                  </div>
+                </div>
+              </li>
+            </div>
         </form>
   
       </ul>
@@ -46,12 +75,6 @@
             <li class="nav-item">
               <a class="nav-link" href="tracks.html">Tracks</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="login.html">Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="signup.html">Sign Up</a>
-            </li>
           </class>
       </ul>
     </div>
@@ -59,7 +82,7 @@
 <!--end of nav bar -->
 <body>
 <!-- /main -->
-
+<div class="container">
 <div hidden>
   <div id = "cards" class="cards">
   <div id ="card" class="card" classname="card" style="max-width: 18rem; width: auto;">
@@ -76,6 +99,7 @@
 
 <div class="container">
   <h1>Artists</h1>
+  <div id="flex"></div>
 
   <div class="d-flex p-2">
     <div class="card-columns" style="text-align:center; margin: 0 auto;">
@@ -95,22 +119,28 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <p id="success-create" class="card-text">With supporting text below as a natural lead-in to additional
-        content.</p>
+      <p id="success-create" class="card-text"></p>
       <div class="modal-body">
         <form class="create-user" action="index.html" method="POST">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-default"><i class="fas fa-user"> </i> User
-                Name</span>
+              <span class="input-group-text" id="inputGroup-sizing-default">Your Name:</span>
+            </div>
+            <input name="full_name" type="text" class="form-control" aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default" required>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">User
+                Name:</span>
             </div>
             <input name="user_name" type="text" class="form-control" aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default" required>
           </div>
           <div class="input-group">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-default"><i class="fas fa-key"> </i>
-                Password</span>
+              <span class="input-group-text" id="inputGroup-sizing-default">
+                Password:</span>
             </div>
             <input name="password" type="password" class="form-control" aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default" required>
@@ -194,13 +224,13 @@
       </div>
       <div class="modal-body">
         <!-- <h5 class="card-title">Log in</h5> -->
-        <p class="card-text">Use your credential to log in</p>
+        <p class="card-text">Use your credentials to log in</p>
         <form class="log-in" action="index.html" method="POST">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-default">UserID</span>
+              <span class="input-group-text" id="inputGroup-sizing-default">User Name</span>
             </div>
-            <input name="userId" type="text" class="form-control" aria-label="Sizing example input"
+            <input name="user_name" type="text" class="form-control" aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default" required>
           </div>
           <div class="input-group mb-3">
@@ -215,7 +245,6 @@
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-primary">Log In</button>
           </div>
-
         </form>
       </div>
     </div>

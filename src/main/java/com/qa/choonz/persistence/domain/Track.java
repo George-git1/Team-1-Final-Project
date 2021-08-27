@@ -28,7 +28,7 @@ public class Track {
     @Column(unique = true)
     private String name;
     
-    @JsonIgnore
+//    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "album_id", referencedColumnName = "id")
     private Album album;
@@ -36,6 +36,10 @@ public class Track {
     @JsonIgnore
     @ManyToMany(mappedBy = "tracks")
     private List<Playlist> playlist;
+    
+    @ManyToOne
+    @JoinColumn(name = "genre_id", referencedColumnName = "id")
+    private Genre genre;
 
     // in seconds
     private int duration;
@@ -47,6 +51,17 @@ public class Track {
         // TODO Auto-generated constructor stub
     }
 
+    public Track(long id, @NotNull @Size(max = 100) String name, Album album, List<Playlist> playlist, int duration,
+            String lyrics, Genre genre) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.album = album;
+        this.playlist = playlist;
+        this.duration = duration;
+        this.genre = genre;
+        this.lyrics = lyrics;
+    }
     public Track(long id, @NotNull @Size(max = 100) String name, Album album, List<Playlist> playlist, int duration,
             String lyrics) {
         super();
@@ -94,7 +109,15 @@ public class Track {
         return duration;
     }
 
-    public void setDuration(int duration) {
+    public Genre getGenre() {
+		return genre;
+	}
+
+	public void setGenre(Genre genre) {
+		this.genre = genre;
+	}
+
+	public void setDuration(int duration) {
         this.duration = duration;
     }
 
@@ -110,14 +133,14 @@ public class Track {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("Track [id=").append(id).append(", name=").append(name).append(", album=").append(album)
-                .append(", playlist=").append(playlist).append(", duration=").append(duration).append(", lyrics=")
+                .append(", playlist=").append(playlist).append(", genre=").append(genre).append(", duration=").append(duration).append(", lyrics=")
                 .append(lyrics).append("]");
         return builder.toString();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(album, duration, id, lyrics, name, playlist);
+        return Objects.hash(album, duration, id, lyrics, name, playlist, genre);
     }
 
     @Override
@@ -130,7 +153,7 @@ public class Track {
         }
         Track other = (Track) obj;
         return Objects.equals(album, other.album) && duration == other.duration && id == other.id
-                && Objects.equals(lyrics, other.lyrics) && Objects.equals(name, other.name)
+                && Objects.equals(lyrics, other.lyrics) && Objects.equals(name, other.name) && Objects.equals(genre, other.genre)
                 && Objects.equals(playlist, other.playlist);
     }
 

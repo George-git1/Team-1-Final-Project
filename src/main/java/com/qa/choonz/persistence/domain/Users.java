@@ -22,7 +22,7 @@ public class Users {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long user_id;
 
 	@NotNull
 	@Size(max = 100)
@@ -43,18 +43,18 @@ public class Users {
 		super();
 	}
 
-	public Users(long id, @NotNull @Size(max = 100) String full_name, @NotNull @Size(max = 100) String user_name, @NotNull String password, List<Playlist> playlist) {
+	public Users(Long user_id, @NotNull @Size(max = 100) String full_name, @NotNull @Size(max = 100) String user_name, @NotNull String password, List<Playlist> playlist) {
 		super();
-		this.id = id;
+		this.user_id = user_id;
 		this.full_name = full_name;
 		this.user_name = user_name;
 		this.password = password;
 		this.playlist = playlist;
 	}
 	
-	public Users(long id, @NotNull @Size(max = 100) String full_name, @NotNull @Size(max = 100) String user_name, @NotNull String password) {
+	public Users(Long user_id, @NotNull @Size(max = 100) String full_name, @NotNull @Size(max = 100) String user_name, @NotNull String password) {
 		super();
-		this.id = id;
+		this.user_id = user_id;
 		this.full_name = full_name;
 		this.user_name = user_name;
 		this.password = password;
@@ -67,12 +67,12 @@ public class Users {
 		this.password = password;
 	}
 
-	public long getId() {
-		return id;
+	public long getUser_Id() {
+		return user_id;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setUser_Id(Long user_id) {
+		this.user_id = user_id;
 	}
 
 	public String getFull_name() {
@@ -109,7 +109,7 @@ public class Users {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(full_name, id, password, playlist, user_name);
+		return Objects.hash(full_name, user_id, password, playlist, user_name);
 	}
 
 	@Override
@@ -121,13 +121,13 @@ public class Users {
 		if (getClass() != obj.getClass())
 			return false;
 		Users other = (Users) obj;
-		return Objects.equals(full_name, other.full_name) && id == other.id && Objects.equals(password, other.password)
+		return Objects.equals(full_name, other.full_name) && user_id == other.user_id && Objects.equals(password, other.password)
 				&& Objects.equals(playlist, other.playlist) && Objects.equals(user_name, other.user_name);
 	}
 
 	@Override
 	public String toString() {
-		return "Users [id=" + id + ", full_name=" + full_name + ", user_name=" + user_name + ", password=" + password
+		return "Users [user_id=" + user_id + ", full_name=" + full_name + ", user_name=" + user_name + ", password=" + password
 				+ ", playlist=" + playlist + "]";
 	}
 	

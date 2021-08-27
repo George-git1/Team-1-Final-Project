@@ -45,19 +45,19 @@ public class UserController {
 
 	// read by id
 	@GetMapping("/read/{id}")
-	public ResponseEntity<UserDTO> read(@PathVariable long id) {
-		return new ResponseEntity<UserDTO>(this.service.read(id), HttpStatus.ACCEPTED);
+	public ResponseEntity<UserDTO> read(@PathVariable Long user_id) {
+		return new ResponseEntity<UserDTO>(this.service.read(user_id), HttpStatus.ACCEPTED);
 	}
 
 	//
 	@PostMapping("/update/{id}")
-	public ResponseEntity<UserDTO> update(@RequestBody Users user, @PathVariable long id) {
-		return new ResponseEntity<UserDTO>(this.service.update(user, id), HttpStatus.ACCEPTED);
+	public ResponseEntity<UserDTO> update(@RequestBody Users user, @PathVariable Long user_id) {
+		return new ResponseEntity<UserDTO>(this.service.update(user, user_id), HttpStatus.ACCEPTED);
 	}
 
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<UserDTO> delete(@PathVariable long id) {
-		return this.service.delete(id) ? new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT)
+	public ResponseEntity<UserDTO> delete(@PathVariable Long user_id) {
+		return this.service.delete(user_id) ? new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT)
 				: new ResponseEntity<UserDTO>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }

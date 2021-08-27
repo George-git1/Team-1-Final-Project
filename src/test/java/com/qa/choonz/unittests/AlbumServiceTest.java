@@ -34,19 +34,19 @@ public class AlbumServiceTest {
 	@Autowired
 	private AlbumService service;
 
-	private Genre genre = new Genre(1L, "name", "description", new ArrayList<>());
+
 
 	private Artist artist = new Artist(1L, "name", new ArrayList<>());
 
-	private Album album = new Album(1L, "name", new ArrayList<>(), artist, genre, "cover");
+	private Album album = new Album(1L, "name", new ArrayList<>(), artist, "cover");
 
-	private AlbumDTO albumDTO = new AlbumDTO(1L, "name", new ArrayList<>(), artist, genre, "cover");
+	private AlbumDTO albumDTO = new AlbumDTO(1L, "name", new ArrayList<>(), artist, "cover");
 
-	private Optional<Album> optionalAlbum = Optional.of(new Album(1L, "name", new ArrayList<>(), artist, genre, "cover"));
+	private Optional<Album> optionalAlbum = Optional.of(new Album(1L, "name", new ArrayList<>(), artist, "cover"));
 
-	private Album newAlbum = new Album(1L, "updated name", new ArrayList<>(), artist, genre, "updated cover");
+	private Album newAlbum = new Album(1L, "updated name", new ArrayList<>(), artist, "updated cover");
 
-	private AlbumDTO newAlbumDTO = new AlbumDTO(1L, "updated name", new ArrayList<>(), artist, genre, "updated cover");
+	private AlbumDTO newAlbumDTO = new AlbumDTO(1L, "updated name", new ArrayList<>(), artist, "updated cover");
 
 	@Test
 	public void testCreate() {

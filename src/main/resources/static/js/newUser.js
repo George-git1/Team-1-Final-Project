@@ -7,7 +7,7 @@ document.querySelector("form.create-user").addEventListener("submit", function (
     let password = formElement["password"].value;
     newUser(full_name, user_name, password);
     let msg = document.getElementById("success-create");
-    msg.innerHTML = "   New user created successfully!"
+    msg.innerHTML = "New user created successfully!"
   })
   
   //log in user
@@ -42,8 +42,8 @@ document.querySelector("form.create-user").addEventListener("submit", function (
       });
   }
   
-  function userLogIn(full_nameuser_name, password) {
-    fetch('http://localhost:8082/users/read/' + userId)
+  function userLogIn(user_name, password) {
+    fetch('http://localhost:8082/users/read/' + user_name)
       .then(
         function (response) {
           if (response.status !== 200) {

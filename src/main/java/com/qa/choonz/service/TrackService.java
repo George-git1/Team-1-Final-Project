@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.qa.choonz.exception.TrackNotFoundException;
 import com.qa.choonz.persistence.domain.Album;
+import com.qa.choonz.persistence.domain.Genre;
 import com.qa.choonz.persistence.domain.Track;
 import com.qa.choonz.persistence.repository.AlbumRepository;
+import com.qa.choonz.persistence.repository.GenreRepository;
 import com.qa.choonz.persistence.repository.TrackRepository;
 import com.qa.choonz.rest.dto.TrackDTO;
 
@@ -18,12 +20,14 @@ public class TrackService {
 
 	private TrackRepository repo;
 	private AlbumRepository repoAlbum;
+    private GenreRepository repoGenre;
 	private ModelMapper mapper;
 
-	public TrackService(TrackRepository repo, AlbumRepository repoAlbum, ModelMapper mapper) {
+	public TrackService(TrackRepository repo, AlbumRepository repoAlbum, GenreRepository repoGenre, ModelMapper mapper) {
 		super();
 		this.repo = repo;
 		this.repoAlbum = repoAlbum;
+		this.repoGenre = repoGenre;
 		this.mapper = mapper;
 	}
 
@@ -70,6 +74,15 @@ public class TrackService {
 		Track updated = this.repo.save(track);
 		return this.mapToDTO(updated);
 
+	}
+	
+// genre
+	public TrackDTO assignGenre(Long trackId, Long genreId) {
+		Track track = repo.findById(trackId).get();
+		Genre genre = repoGenre.findById(genreId).get();
+		track.setGenre(genre);
+		Track updated = this.repo.save(track);
+		return this.mapToDTO(updated);
 	}
 
 }

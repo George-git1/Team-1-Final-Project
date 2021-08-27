@@ -1,5 +1,6 @@
 package com.qa.choonz.rest.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,7 +10,7 @@ public class ArtistDTO {
 
     private long id;
     private String name;
-    private List<Album> albums;
+    private List<Album> albums = new ArrayList<>();
 
     public ArtistDTO() {
         super();
@@ -22,6 +23,13 @@ public class ArtistDTO {
         this.name = name;
         this.albums = albums;
     }
+    
+    public ArtistDTO(Long id, String name) {
+  		super();
+  		this.id = id;
+  		this.name = name;
+  	}
+
 
     public long getId() {
         return id;

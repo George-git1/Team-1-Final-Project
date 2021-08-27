@@ -1,9 +1,11 @@
 package com.qa.choonz.rest.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 import com.qa.choonz.persistence.domain.Track;
+import com.qa.choonz.persistence.domain.Users;
 
 public class PlaylistDTO {
 
@@ -11,20 +13,50 @@ public class PlaylistDTO {
     private String name;
     private String description;
     private String artwork;
-    private List<Track> tracks;
+    private List<Track> tracks = new ArrayList<>();
+    private Users users;
 
     public PlaylistDTO() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-    public PlaylistDTO(long id, String name, String description, String artwork, List<Track> tracks) {
+    public PlaylistDTO(long id, String name, String description, String artwork, List<Track> tracks, Users users) {
         super();
         this.id = id;
         this.name = name;
         this.description = description;
         this.artwork = artwork;
         this.tracks = tracks;
+        this.users = users;
+    }
+    
+    public PlaylistDTO(String name, String description, String artwork) {
+ 		super();
+ 		this.name = name;
+ 		this.description = description;
+ 		this.artwork = artwork;
+ 	}
+    
+	public PlaylistDTO(Long id, String name, String description, String artwork) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.artwork = artwork;
+	}
+	public PlaylistDTO(Long id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+	
+    public Users getUsers() {
+        return users;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
     }
 
     /**
@@ -97,31 +129,31 @@ public class PlaylistDTO {
         this.tracks = tracks;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("PlaylistDTO [id=").append(id).append(", name=").append(name).append(", description=")
-                .append(description).append(", artwork=").append(artwork).append(", tracks=").append(tracks)
-                .append("]");
-        return builder.toString();
-    }
+	@Override
+	public String toString() {
+		return "PlaylistDTO [id=" + id + ", name=" + name + ", description=" + description + ", artwork=" + artwork
+				+ ", tracks=" + tracks + ", users=" + users + "]";
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(artwork, description, id, name, tracks);
-    }
+	@Override
+	public int hashCode() {
+		return Objects.hash(artwork, description, id, name, tracks, users);
+	}
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof PlaylistDTO)) {
-            return false;
-        }
-        PlaylistDTO other = (PlaylistDTO) obj;
-        return Objects.equals(artwork, other.artwork) && Objects.equals(description, other.description)
-                && id == other.id && Objects.equals(name, other.name) && Objects.equals(tracks, other.tracks);
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PlaylistDTO other = (PlaylistDTO) obj;
+		return Objects.equals(artwork, other.artwork) && Objects.equals(description, other.description)
+				&& id == other.id && Objects.equals(name, other.name) && Objects.equals(tracks, other.tracks)
+				&& Objects.equals(users, other.users);
+	}
+
+
 
 }
