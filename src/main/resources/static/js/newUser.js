@@ -7,7 +7,7 @@ document.querySelector("form.create-user").addEventListener("submit", function (
     let password = formElement["password"].value;
     newUser(full_name, user_name, password);
     let msg = document.getElementById("success-create");
-    msg.innerHTML = "New user created Successfully!"
+    msg.innerHTML = "   New user created successfully!"
   })
   
   //log in user
@@ -20,7 +20,7 @@ document.querySelector("form.create-user").addEventListener("submit", function (
   })
   
   
-  function newUser(user_name, password) {
+  function newUser(full_name, user_name, password) {
   
     let dataToPost = {
       "full_name": full_name,
@@ -42,7 +42,7 @@ document.querySelector("form.create-user").addEventListener("submit", function (
       });
   }
   
-  function userLogIn(user_name, password) {
+  function userLogIn(full_nameuser_name, password) {
     fetch('http://localhost:8082/users/read/' + userId)
       .then(
         function (response) {
